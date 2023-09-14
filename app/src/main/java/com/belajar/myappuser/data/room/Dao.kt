@@ -18,8 +18,8 @@ interface Dao {
     suspend fun insert(vararg item: FavoriteEntity)
 
     //metode yang menggunakan query select untuk menampilkan objek table_products dengan limit dan offset
-    @Query("SELECT * FROM $TABLE_USER LIMIT :limit OFFSET :startUserId")
-    fun loadAll(startUserId: Int, limit: Int): List<FavoriteEntity>
+    @Query("SELECT * FROM $TABLE_USER LIMIT :limit OFFSET :offset")
+    fun loadAll(offset: Int, limit: Int): List<FavoriteEntity>
 
     //metode yang menggunakan query select untuk menampilkan objek table_products dengan where id
     @Query("SELECT * FROM $TABLE_USER WHERE id= :id")

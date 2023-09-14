@@ -19,10 +19,10 @@ class WishListPagingSource (private val UserDao: Dao
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, User> {
-        val pageNumber = params.key ?: STARTING_KEY
-        val startUserId = pageNumber * SIZE
+        val pageNumber = params.key ?: 1
+        val offset = pageNumber * SIZE
         val items = withContext(Dispatchers.IO){
-            UserDao.loadAll(pageNumber, SIZE).map { it.toModel() }
+            UserDao.loadAll(offset, SIZE).map { it.toModel() }
         }
 
         return try {

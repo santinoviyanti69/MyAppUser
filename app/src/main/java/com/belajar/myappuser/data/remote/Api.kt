@@ -23,8 +23,7 @@ object Api {
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
             .addInterceptor { chain ->
-                val request = chain.request().newBuilder()
-                    .addHeader("Authorization", "Bearer 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").build()
+                val request = chain.request().newBuilder().build()
                 chain.proceed(request)
             }
 
