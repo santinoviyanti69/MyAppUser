@@ -67,8 +67,7 @@ class MainActivity : AppCompatActivity() {
             DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL)
         )
         lifecycleScope.launch{
-            repeatOnLifecycle(Lifecycle.State.RESUMED){
-                adapter.refresh()
+            repeatOnLifecycle(Lifecycle.State.STARTED){
                 items.collect{
                     adapter.submitData(it)
                 }

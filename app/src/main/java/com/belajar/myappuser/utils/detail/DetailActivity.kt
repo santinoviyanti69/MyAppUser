@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
@@ -38,7 +39,7 @@ class DetailActivity : AppCompatActivity() {
         )
     }
 
-    //kondisi awal saat MainActivity baru diciptakan
+    //kondisi awal saat DetailActivity baru diciptakan
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
@@ -50,6 +51,7 @@ class DetailActivity : AppCompatActivity() {
         val username = intent.getStringExtra("EXTRA_ID")
         viewModelDetail.getDetailUser(username)
 
+        //untuk membantu mendebug di logcat
         Log.d("detail", username.toString())
 
         viewModelDetail.detailUser.observe(this) {
@@ -62,12 +64,19 @@ class DetailActivity : AppCompatActivity() {
 
             binding.nama.text = it.login
 
+            //untuk membantu mendebug di logcat
             Log.d("DetailUser", it.isFavorite.toString())
 
             if(it.isFavorite){
                 binding.btnFavorite.changeIconColor(R.color.red)
+
+                Toast.makeText(this, "Berhasil Menambahkan ke Favorite", Toast.LENGTH_LONG).show()
+
             }else{
                 binding.btnFavorite.changeIconColor(R.color.white)
+
+                Toast.makeText(this, "Berhasil Membatalkan Favorite", Toast.LENGTH_LONG).show()
+
             }
 
         }
@@ -79,6 +88,7 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
+    // untuk menentukan kejadian pada masing-masing opsi dengan mendapatkan id pada setiap menu item
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

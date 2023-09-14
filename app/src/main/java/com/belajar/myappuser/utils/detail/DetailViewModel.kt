@@ -14,6 +14,7 @@ class DetailViewModel(private val repo: UserRepository
 
     val resultSuccessFavorite = MutableLiveData<Boolean>()
     val resultDeleteFavorite = MutableLiveData<Boolean>()
+
     private val _detailUser = MutableLiveData<User>()
     val detailUser: LiveData<User>
         get() = _detailUser

@@ -21,7 +21,7 @@ abstract class DataBase: RoomDatabase() {
         @Volatile
         private var INSTANCE : DataBase? = null
 
-        // function untuk getdatabase dari class productDatabase dengan variable instance
+        // function untuk getdatabase dari class productDatabase dengan variable instance (object dari satu kelas)
         fun getDatabase(context: Context): DataBase{
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(

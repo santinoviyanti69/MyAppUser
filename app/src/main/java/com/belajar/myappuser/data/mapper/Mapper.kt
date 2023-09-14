@@ -4,7 +4,7 @@ import com.belajar.myappuser.data.entity.FavoriteEntity
 import com.belajar.myappuser.data.model.User
 
 // fun sebagai fungsi elemen penyusun
-// untuk mapping dataclass ListUser ke data class favorite entity
+// untuk mapping dataclass User ke data class favorite entity
 
 fun User.toFavoriteEntity()=
     FavoriteEntity(

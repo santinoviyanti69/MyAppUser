@@ -31,6 +31,7 @@ class WishlistActivity : AppCompatActivity() {
         DataBase.getDatabase(this)
     }
 
+    //kondisi awal saat ActivityWishlist baru diciptakan
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWishlistBinding.inflate(layoutInflater)
@@ -50,6 +51,8 @@ class WishlistActivity : AppCompatActivity() {
         val items = viewModel.itemsFavorite
         binding.bindAdapter(items)
     }
+
+    //untuk menghubungkan PagingDataAdapter ke view
     private fun ActivityWishlistBinding.bindAdapter(items: Flow<PagingData<User>>) {
         val adapter = UserAdapter(object : UserListAdapterListener {
             override fun onClickUser(user: User) {
@@ -81,6 +84,7 @@ class WishlistActivity : AppCompatActivity() {
 
 
 
+    // untuk menentukan kejadian pada masing-masing opsi dengan mendapatkan id pada setiap menu item
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
