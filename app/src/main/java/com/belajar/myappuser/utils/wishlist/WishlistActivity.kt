@@ -70,7 +70,17 @@ class WishlistActivity : AppCompatActivity() {
                 }
             }
         }
-    }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                adapter.refresh()
+                }
+            }
+        }
+
+
+
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {

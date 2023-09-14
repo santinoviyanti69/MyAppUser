@@ -67,16 +67,14 @@ class MainActivity : AppCompatActivity() {
             DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL)
         )
         lifecycleScope.launch{
-            repeatOnLifecycle(Lifecycle.State.STARTED){
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                adapter.refresh()
                 items.collect{
                     adapter.submitData(it)
                 }
             }
         }
     }
-
-
-
 
     // untuk menampilkan layout menu di ecatalog activity
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
