@@ -28,5 +28,4 @@ fun FavoriteEntity.toModel() =
         url = this.url,
         isFavorite = true
 
-
     )

@@ -83,7 +83,6 @@ class WishlistActivity : AppCompatActivity() {
 
 
 
-
     // untuk menentukan kejadian pada masing-masing opsi dengan mendapatkan id pada setiap menu item
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -91,6 +90,8 @@ class WishlistActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        //mengembalikan nilai yang diterima dari metode onOptionsItemSelected di superclass.
         return super.onOptionsItemSelected(item)
     }
 }

@@ -71,6 +71,7 @@ class UserAdapter(private val listener: UserListAdapterListener): PagingDataAdap
     }
 }
 
+// sebagai penghubung anatar sistem dengan user
 interface UserListAdapterListener {
     fun onClickUser(user: User)
 }

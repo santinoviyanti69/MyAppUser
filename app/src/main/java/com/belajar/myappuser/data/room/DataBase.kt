@@ -11,7 +11,7 @@ import com.belajar.myappuser.data.entity.FavoriteEntity
 
 abstract class DataBase: RoomDatabase() {
 
-    //untuk memudahkan database mengakses class DAO
+    //untuk memudahkan database mengakses  class DAO
     abstract fun Dao(): Dao
 
     // object di dalam class

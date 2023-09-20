@@ -19,21 +19,30 @@ class UserRepository (
     private val Dao: Dao
 ){
 
-    fun gerFavorite(user: Int): Flow<User?> {
+    //untuk manambahkan feature favorite
+    //mengambil data dari dao dengan mengambil user tapi lewat parameter id
+    fun getFavorite(user: Int): Flow<User?> {
         return Dao.getUserById(user).map {
             it?.toModel()
         }
     }
 
+    //untuk menghapus favorite
+    //mengambil data dari dao menghapus dengan parameter user
     suspend fun setFavoriteDelete(User: User) {
         return Dao.delete(User.toFavoriteEntity())
     }
 
+    //untuk menambahkan favorite
+    //mengambil data dari dao menambahkan dengan parameter user
     suspend fun setFavoriteInsert(User: User) {
         return Dao.insert(User.toFavoriteEntity())
     }
-    suspend fun getListUser(username: String?): User {
-        return service.getUsername(username).toModel()
+
+    //mengambil detail user
+    //mengambil data dari service dengan parameter username dengan mengubah useritemrespons ke user
+    suspend fun getUser(username: String?): User {
+        return service.getUser(username).toModel()
     }
 
     fun getFavoriteUser(): Flow<PagingData<User>> {
@@ -44,7 +53,6 @@ class UserRepository (
             .flow
     }
 
-    //untuk menangani cache dalam memori dan meminta data saat user ada di akhir page
     fun getUsers(): Flow<PagingData<User>> {
         return Pager (
             config = PagingConfig(pageSize = SIZE, enablePlaceholders = false),

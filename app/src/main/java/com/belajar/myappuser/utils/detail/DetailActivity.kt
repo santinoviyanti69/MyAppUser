@@ -99,6 +99,7 @@ class DetailActivity : AppCompatActivity() {
     }
 }
 
+//untuk mengganti warna ikon pada tombol gambar
 fun ImageButton.changeIconColor(@ColorRes color: Int) {
     imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this.context, color))
 }

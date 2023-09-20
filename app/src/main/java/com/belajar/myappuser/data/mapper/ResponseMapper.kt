@@ -12,9 +12,10 @@ fun List<UserItemResponse>.toModel(): List<User>{
 }
 
 // fun sebagai fungsi elemen penyusun
-// untuk mapping dataclass dari UserResponse ke list user
+// untuk mapping (mengubah) dataclass dari UserResponse ke user
 
 fun UserItemResponse.toModel() =
+
     User(
         avatar_url,
         events_url,

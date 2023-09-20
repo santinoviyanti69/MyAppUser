@@ -19,28 +19,42 @@ class DetailViewModel(private val repo: UserRepository
     val detailUser: LiveData<User>
         get() = _detailUser
 
+    //nge getdetailuser dengan parameter username
     fun getDetailUser(username: String?) {
         viewModelScope.launch {
-            val detailUser = repo.getListUser(username)
+
+            //variabel detailuser dengan repo dari data getUser dengan parameter username
+            val detailUser = repo.getUser(username)
             setUser(detailUser)
 
         }
     }
 
-    fun setUser(listUser: User){
-        viewModelScope.launch {
-            repo.gerFavorite(listUser.id).collect{
-                if(it == null){
-                    _detailUser.postValue(listUser)
 
+    //menginisiasi setuser dengan parameter user
+    fun setUser(user: User){
+        viewModelScope.launch {
+
+            //nge get favortite untuk ngambil user menggunakan parameter id
+            repo.getFavorite(user.id).collect{
+
+                //nge get value user di post menggunakan postvalue dengan parameter User
+                if(it == null){
+                    _detailUser.postValue(user)
+
+                //nge get value menggunakan parameter it dengan type data user
                 }else{
                     _detailUser.postValue(it)
                 }
             }
         }
     }
+
+    //untuk menampilkan favorite di detailuser
     fun setFavorite() {
         viewModelScope.launch {
+
+            //sebagai kondisi jika valuenya tidak null dia menghapus favorite dan jika null dia menambahkan favorite
             if(_detailUser.value != null){
                 if (_detailUser.value?.isFavorite == true){
                     repo.setFavoriteDelete(_detailUser.value!!)

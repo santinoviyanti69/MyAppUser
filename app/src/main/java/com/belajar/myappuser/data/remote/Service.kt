@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-//untuk mengambil data ListUser dan id ListUSer dari API
+//untuk mengambil data User dan username USer dari API
 interface Service {
 
     @GET("users")
@@ -15,8 +15,9 @@ interface Service {
     ): List<UserItemResponse>
 
 
+    //untuk mengambil detail user berdasarkan username dan endpoint users/username
     @GET("users/{username}")
-    suspend fun getUsername(
+    suspend fun getUser(
         @Path("username") username: String?
     ): UserItemResponse
 
